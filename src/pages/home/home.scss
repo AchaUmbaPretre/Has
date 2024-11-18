@@ -1,0 +1,143 @@
+// Variables pour animations et couleurs
+$primary-color: rgb(3, 56, 136);
+$secondary-color: #ffffff;
+$transition-speed: 0.6s;
+$easing: cubic-bezier(0.25, 1, 0.5, 1);
+$text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+// Animation fade-in
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animation slide-up
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animation hover pour boutons
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Classe commune pour animations
+.animated {
+  &.fade-in {
+    animation: fadeIn $transition-speed $easing;
+  }
+
+  &.slide-up {
+    animation: slideUp $transition-speed $easing;
+  }
+}
+
+.home {
+  width: 100%;
+
+  .home_wrapper {
+    .home_container {
+      margin: 0 auto;
+      padding: 0 16px;
+      max-width: 1200px;
+
+      .banner {
+        background: linear-gradient(
+            rgba(11, 11, 14, 0.6),
+            rgba(21, 21, 65, 0.8)
+          ),
+          url(./../../img/jeune-homme-souriant-confiant-serveur-uniforme-attachant-papillon-au-cou-tenant-plateau-re-isole_926199-2036483.jpg) no-repeat center;
+        background-size: cover;
+        height: 70vh;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .banner_content {
+          text-align: center;
+          color: $secondary-color;
+
+          .banner_title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: $text-shadow;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s $easing;
+          }
+
+          .banner_text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: $text-shadow;
+            animation: fadeIn 1.5s $easing;
+          }
+
+          .banner_buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+
+            .btn {
+              padding: 10px 20px;
+              border-radius: 5px;
+              font-weight: bold;
+              text-transform: uppercase;
+              transition: transform 0.3s ease, background-color 0.3s ease;
+              cursor: pointer;
+
+              &.btn_primary {
+                background-color: $primary-color;
+                color: $secondary-color;
+                border: none;
+
+                &:hover {
+                  background-color: darken($primary-color, 10%);
+                  animation: pulse 1s infinite;
+                }
+              }
+
+              &.btn_secondary {
+                background-color: transparent;
+                color: $secondary-color;
+                border: 2px solid $secondary-color;
+
+                &:hover {
+                  background-color: $secondary-color;
+                  color: $primary-color;
+                  animation: pulse 1s infinite;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

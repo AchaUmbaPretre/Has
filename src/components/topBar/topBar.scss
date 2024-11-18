@@ -1,0 +1,98 @@
+// Variables globales
+$primary-color: #4caf50;
+$text-color: #333; // Couleur du texte
+$hover-color: darken($primary-color, 10%);
+$transition-speed: 0.3s;
+$easing: ease-in-out;
+
+// Animation fade-in
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// TopBar Styles
+.topbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 111;
+  background-color: #fff; // Couleur de fond blanche
+  padding: 10px 0;
+/*   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Ombre légère pour un effet d'élévation
+ */  animation: fadeInDown $transition-speed $easing;
+
+  &.scrolled {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Accentuer l'ombre au scroll
+  }
+
+  .topbar_wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .topbar_left {
+      .logo {
+        width: 100px;
+        height: 70px;
+        object-fit: cover;
+        letter-spacing: 1px;
+        transition: transform $transition-speed $easing;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .topbar_right {
+      .topbar_ul {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .topbar_li {
+          .topbar_link {
+            color: $text-color; // Texte gris foncé pour contraste
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            transition: color $transition-speed $easing;
+
+            &:hover {
+              color: $primary-color;
+            }
+
+            // Animation underline on hover
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: -5px;
+              left: 0;
+              width: 0;
+              height: 2px;
+              background: $primary-color;
+              transition: width $transition-speed $easing;
+            }
+
+            &:hover::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
